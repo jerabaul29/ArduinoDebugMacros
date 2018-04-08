@@ -2,8 +2,9 @@
 #include "Parameters.h"
 
 int i;
-int *p;
+int *pi;
 char c;
+char *pc;
 
 void setup(){
 
@@ -15,16 +16,18 @@ void setup(){
   #endif
 
   i = 4;
-  p = &i;
+  pi = &i;
   c = 'b';
+  pc = &c;
 }
 
 int main(){
   PDEBMSG("Start loop");
 
   PDEBVAR(i)
-  PDEBVAR((unsigned)p)  // this is a bit annoying
+  PDEBVAR((unsigned)pi)  // this is a bit annoying
   PDEBVAR(c)
+  PDEBVAR(pc)
 
   PDEBMSG("done; just waiting");
 
