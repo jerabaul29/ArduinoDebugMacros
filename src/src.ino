@@ -24,9 +24,12 @@ void setup(){
 int main(){
   PDEBMSG("Start loop");
 
+  print_debug_status();
+
   PDEBVAR(i)
-  PDEBVAR((unsigned)pi)  // this is a bit annoying
+  PDEBVAR(pi)  // this is a bit annoying
   PDEBVAR(c)
+  SHOW_WHERE
   PDEBVAR(pc)
 
   PDEBMSG("done; just waiting");
