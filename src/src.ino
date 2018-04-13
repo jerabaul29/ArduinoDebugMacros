@@ -10,31 +10,33 @@ void setup(){
 
   delay(1000);
 
-  #if DEBUG
-    SERIAL_DEBUG.begin(9600);
-    delay(10);
-  #endif
+  // to be able to use debug output later on
+  DEBINIT
 
   i = 4;
   pi = &i;
   c = 'b';
   pc = &c;
+
+  // print debug status
+  DEBPSTATUS
+
+  // print debug message
+  DEBPMSG("Start loop");
+
+  // print debug variables
+  DEBPVAR(i)
+  DEBPVAR(pi)
+  DEBPVAR(c)
+  DEBPVAR(pc)
+
+  // print debug location information
+  DEBPWHERE
+
+  // print debug content of macro
+  DEBPMACRO(SOME_MACRO)
 }
 
 int main(){
-  PDEBMSG("Start loop");
-
-  print_debug_status();
-
-  PDEBVAR(i)
-  PDEBVAR(pi)  // this is a bit annoying
-  PDEBVAR(c)
-  SHOW_WHERE
-  PDEBVAR(pc)
-
-  PDEBMSG("done; just waiting");
-
-  while(1){
-    // nothing
-  }
+  // nothing
 }

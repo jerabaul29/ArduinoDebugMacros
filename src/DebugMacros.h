@@ -4,27 +4,31 @@
 #ifndef DEBUG_MACROS
 #define DEBUG_MACROS
 
-// TODO: add indirection on PDEBVAR so that can replace SHOW_VAR
-// TODO: PDEBWHERE instead of SHOW_WHERE
 // TODO: test
-// TODO: do all initialization in a DEBINIT
-// TODO: rationalize all names: all should start with DEB: example: DEBPVAR
+// TODO: check that nothing out of a F()
 
 #if DEBUG
-#  define PDEBMSG(x) SERIAL_DEBUG.println(); SERIAL_DEBUG.print(F("D ")); SERIAL_DEBUG.println(F(x));
-#  define PDEBVAR(x) SERIAL_DEBUG.println(); SERIAL_DEBUG.print(F("D "#x" ")); debug_println(x);
-#  define SHOW_VAR(x) SHOW_VAR_(x)
-#  define SHOW_WHERE SERIAL_DEBUG.print(F(__FILE__)); SERIAL_DEBUG.print(" line "); SERIAL_DEBUG.println(__LINE__);
+#  define DEBINIT SERIAL_DEBUG.begin(9600); delay(10); SERIAL_DEBUG.println();
+#  define DEBPSTATUS DEBPMSG("Compiled __DATE__ __TIME__") DEBPMSG("Debug on SERIAL_DEBUG")
+// #  define DEBPMSG(x) SERIAL_DEBUG.println(); SERIAL_DEBUG.print(F("D ")); SERIAL_DEBUG.println(F(x));
+#  define DEBPMSG(x) SERIAL_DEBUG.println(F("D x"));
+#  define DEBPVAR(x) SERIAL_DEBUG.print(F("D #x ")); debug_println(x);  // TODO: check if should be "D "#x" " or not
+// #  define DEBPWHERE SERIAL_DEBUG.print(F("__FILE__")); SERIAL_DEBUG.print(F(" line ")); SERIAL_DEBUG.println(F(__LINE__));
+#  define DEBPWHERE SERIAL_DEBUG.println(F("D __FILE__ line __LINE__"));
+// #  define DEBPMACRO(x) SERIAL_DEBUG.println(); SERIAL_DEBUG.println(F("D " #x " " DEBSHOW(x)));
+#  define DEBPMACRO(x) SERIAL_DEBUG.println(F("D #x DEBSHOW(x)"));
+#  define DEBSHOW(x) DEBSHOW_(x)
 #else
-#  define PDEBMSG(x) // nothing
-#  define PDEBVAR(x) // nothing
-#  define SHOW_VAR(x) // nothing
-#  define SHOW_WHERE // nothing
+#  define DEBINIT // nothing
+#  define DEBPSTATUS // nothing
+#  define DEBPMSG(x) // nothing
+#  define DEBPVAR(x) // nothing
+#  define DEBPWHERE // nothing
+#  define DEBPMACRO(x) // nothing
+#  define DEBSHOW(x) // nothing
 #endif
 
-#define SHOW_VAR_(x) #x  // # preprocessor statement prevents expansion of operand; add a layer of indirection
-
-void print_debug_status(void);
+#define DEBSHOW_(x) #x  // # preprocessor statement prevents expansion of operand; add a layer of indirection
 
 template<typename T>
 inline void debug_println(T data){
