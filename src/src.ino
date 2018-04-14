@@ -10,33 +10,22 @@ void setup(){
 
   delay(1000);
 
-  // to be able to use debug output later on
-  DEBINIT
+  DEBINIT // to be able to use debug output later on
+  DEBPSTATUS  // print debug status
 
   i = 4;
-  pi = &i;
   c = 'b';
-  pc = &c;
 
-  // print debug status
-  DEBPSTATUS
+  DEBPMSG("Start loop"); // print debug message
 
-  // print debug message
-  DEBPMSG("Start loop");
-
-  // print debug variables
-  DEBPVAR(i)
-  DEBPVAR(pi)
+  DEBPVAR(i) // print debug variables
   DEBPVAR(c)
-  DEBPVAR(pc)
 
-  // print debug location information
-  DEBPWHERE
+  DEBPWHERE // print debug location information
 
-  // print debug content of macro
-  DEBPMACRO(SOME_MACRO)
+  DEBPMACRO(SOME_MACRO) // print debug content of macro
 }
 
-int main(){
+void loop(){
   // nothing
 }

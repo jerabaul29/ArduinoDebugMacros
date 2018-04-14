@@ -1,23 +1,35 @@
-#include <Arduino.h>
+/*
+ Written by Jean Rabault, jean.rblt@gmail.com, May 2018.
+ Free to use as long as this header is retained.
+ 
+ A set of macros to make it easier to perform debugging through Serial.
+ Use a separate Parameters.h header file to decide if debug output or not
+*/
+
+/*
+ Remember:
+ - # preprocessor statement prevents expansion of operand; add a layer of indirection
+ - no expansion of macros inside strings
+ - strings one after the other are automatically concatenated
+*/
+
+#ifndef PREPROCTEST  // to allow doing a g++ -E for checking that the macros are OK
+#  include <Arduino.h>
+#endif
+
 #include "Parameters.h"
 
-#ifndef DEBUG_MACROS
-#define DEBUG_MACROS
-
-// TODO: test
-// TODO: check that nothing out of a F()
+#ifndef DEBUGMACROS
+#define DEBUGMACROS
 
 #if DEBUG
-#  define DEBINIT SERIAL_DEBUG.begin(9600); delay(10); SERIAL_DEBUG.println();
-#  define DEBPSTATUS DEBPMSG("Compiled " __DATE__ " " __TIME__) DEBPMSG("Debug on " DEBSHOW(SERIAL_DEBUG) )
-// #  define DEBPMSG(x) SERIAL_DEBUG.println(); SERIAL_DEBUG.print(F("D ")); SERIAL_DEBUG.println(F(x));
-#  define DEBPMSG(x) SERIAL_DEBUG.println(F("D " x));
-#  define DEBPVAR(x) SERIAL_DEBUG.print(F("D " #x " ")); debug_println(x);  // TODO: check if should be "D "#x" " or not
-// #  define DEBPWHERE SERIAL_DEBUG.print(F("__FILE__")); SERIAL_DEBUG.print(F(" line ")); SERIAL_DEBUG.println(F(__LINE__));
-#  define DEBPWHERE SERIAL_DEBUG.print(F("D " __FILE__ " l " DEBSHOW(__LINE__)));
-// #  define DEBPMACRO(x) SERIAL_DEBUG.println(); SERIAL_DEBUG.println(F("D " #x " " DEBSHOW(x)));
-#  define DEBPMACRO(x) SERIAL_DEBUG.println(F("D " #x " " DEBSHOW(x)));
-#else
+#  define DEBINIT DEBUG_SERIAL.begin(DEBUG_BAUDRATE); delay(100); DEBUG_SERIAL.println();
+#  define DEBPSTATUS DEBPMSG("Compiled " __DATE__ " " __TIME__) DEBPMSG("Debug on " DEBSHOW(DEBUG_SERIAL) )
+#  define DEBPMSG(x) DEBUG_SERIAL.println(F("D " x));
+#  define DEBPVAR(x) DEBUG_SERIAL.print(F("D " #x " ")); DEBUG_SERIAL.println(x);
+#  define DEBPWHERE DEBUG_SERIAL.println(F("D " __FILE__ " l " DEBSHOW(__LINE__)));
+#  define DEBPMACRO(x) DEBUG_SERIAL.println(F("D " #x " " DEBSHOW(x)));
+#else  // not in debug mode: empty macros
 #  define DEBINIT // nothing
 #  define DEBPSTATUS // nothing
 #  define DEBPMSG(x) // nothing
@@ -26,17 +38,8 @@
 #  define DEBPMACRO(x) // nothing
 #endif
 
-#  define DEBSHOW(x) DEBSHOW_(x)
-#define DEBSHOW_(x) #x  // # preprocessor statement prevents expansion of operand; add a layer of indirection
-
-template<typename T>
-inline void debug_println(T data){
-  SERIAL_DEBUG.println(data);
-}
-
-// need to define specifically, compiler error on print(int*&)
-inline void debug_println(int * &data){
-  SERIAL_DEBUG.println((unsigned) data);
-}
+// add a layer of indirection to allow macro extension
+#define DEBSHOW(x) DEBSHOW_(x)
+#define DEBSHOW_(x) #x
 
 #endif
