@@ -2117,7 +2117,7 @@ void setup(){
   pc = &c;
 
 
-  Serial.println((reinterpret_cast<const __FlashStringHelper *>((__extension__({static const char __c[] __attribute__((__progmem__)) = ("D " "Compiled " "Apr 14 2018" " " "00:05:32"); &__c[0];}))))); Serial.println((reinterpret_cast<const __FlashStringHelper *>((__extension__({static const char __c[] __attribute__((__progmem__)) = ("D " "Debug on " "Serial"); &__c[0];})))));
+  Serial.println((reinterpret_cast<const __FlashStringHelper *>((__extension__({static const char __c[] __attribute__((__progmem__)) = ("D " "Compiled " "Apr 14 2018" " " "12:07:39"); &__c[0];}))))); Serial.println((reinterpret_cast<const __FlashStringHelper *>((__extension__({static const char __c[] __attribute__((__progmem__)) = ("D " "Debug on " "Serial"); &__c[0];})))));
 
 
   Serial.println((reinterpret_cast<const __FlashStringHelper *>((__extension__({static const char __c[] __attribute__((__progmem__)) = ("D " "Start loop"); &__c[0];})))));;
