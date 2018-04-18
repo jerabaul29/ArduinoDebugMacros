@@ -3,13 +3,15 @@
 
   On my Arduino board, I got the following output:
 
-  D Compiled Apr 18 2018 10:54:20
+  D Compiled Apr 18 2018 11:00:23
   D Debug on Serial
   D Start loop
-  D i 4
-  D c b
-  D /home/jrlab/Desktop/Git/Example_Debug_Macros_arduino/src/src.ino l 24
-  D SOME_MACRO bbbbbbbbbbb Serial
+  D i is 4
+  D c is b
+  D at /home/jrlab/Desktop/Git/Example_Debug_Macros_arduino/src/src.ino l 39
+  D macro SOME_MACRO is bbbbbbbbbbb
+  D macro OTHER_MACRO is Serial
+
 
 */
 
