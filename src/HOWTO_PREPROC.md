@@ -18,6 +18,8 @@
 /home/jrlab/Desktop/Arduino/Arduino_1.6.13/arduino-1.6.13/hardware/tools/avr/bin/avr-g++ -E -g -Os -Wall -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10613 -DARDUINO_AVR_DUEMILANOVE -DARDUINO_ARCH_AVR -I/home/jrlab/Desktop/Arduino/Arduino_1.6.13/arduino-1.6.13/hardware/arduino/avr/cores/arduino -I/home/jrlab/Desktop/Arduino/Arduino_1.6.13/arduino-1.6.13/hardware/arduino/avr/variants/standard /tmp/arduino_build_690001/sketch/src.ino.cpp -o  src.i
 ```
 
+## Method 2: using g++ preprocessor
+
 It is possible to strip down the command, but the problem is to be able to avoid missing macros. For this, either add the paths requited (the *-I* arguments of the Arduino IDE), but this will make the command quite long and verbose again, or put an import gard to get no arduino defined headers if compiling just to see (partial) macro replacement:
 
 ```
