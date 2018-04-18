@@ -39,6 +39,7 @@ void setup(){
   DEBPWHERE // print debug location information
 
   DEBPMACRO(SOME_MACRO) // print debug content of macro
+  DEBPMACRO(OTHER_MACRO) // print debug content of macro, works also with macro in macro
 }
 
 void loop(){

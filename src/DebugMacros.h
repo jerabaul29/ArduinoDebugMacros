@@ -27,9 +27,9 @@
 #  define DEBINIT DEBUG_SERIAL.begin(DEBUG_BAUDRATE); delay(100); DEBUG_SERIAL.println();
 #  define DEBPSTATUS DEBPMSG("Compiled " __DATE__ " " __TIME__) DEBPMSG("Debug on " DEBSHOW(DEBUG_SERIAL) )
 #  define DEBPMSG(x) DEBUG_SERIAL.println(F("D " x));
-#  define DEBPVAR(x) DEBUG_SERIAL.print(F("D " #x " ")); DEBUG_SERIAL.println(x);
-#  define DEBPWHERE DEBUG_SERIAL.println(F("D " __FILE__ " l " DEBSHOW(__LINE__)));
-#  define DEBPMACRO(x) DEBUG_SERIAL.println(F("D " #x " " DEBSHOW(x)));
+#  define DEBPVAR(x) DEBUG_SERIAL.print(F("D " #x " is ")); DEBUG_SERIAL.println(x);
+#  define DEBPWHERE DEBUG_SERIAL.println(F("D at " __FILE__ " l " DEBSHOW(__LINE__)));
+#  define DEBPMACRO(x) DEBUG_SERIAL.println(F("D macro " #x " is " DEBSHOW(x)));
 #else  // not in debug mode: empty macros
 #  define DEBINIT // nothing
 #  define DEBPSTATUS // nothing
