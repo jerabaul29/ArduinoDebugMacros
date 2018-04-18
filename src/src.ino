@@ -1,3 +1,18 @@
+/*
+  An example of how to use the debug macros. Remember to put the right parameters in the macro definitions in Parameters.h
+
+  On my Arduino board, I got the following output:
+
+  D Compiled Apr 18 2018 10:54:20
+  D Debug on Serial
+  D Start loop
+  D i 4
+  D c b
+  D /home/jrlab/Desktop/Git/Example_Debug_Macros_arduino/src/src.ino l 24
+  D SOME_MACRO bbbbbbbbbbb Serial
+
+*/
+
 #include "DebugMacros.h"
 #include "Parameters.h"
 
