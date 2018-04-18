@@ -3,7 +3,8 @@
  Free to use as long as this header is retained.
  
  A set of macros to make it easier to perform debugging through Serial.
- Use a separate Parameters.h header file to decide if debug output or not
+ Use a separate Parameters.h header file to decide if debug output or not,
+ and the parameters used for debugging (which port, which baud rate).
 */
 
 /*
