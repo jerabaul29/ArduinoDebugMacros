@@ -1,6 +1,6 @@
 # Arduino Debug Macros
 
-This repository contains a few macros that can help debugging Arduino sketches. The repo was written with Visual Studio Code, so its structure follows the VSC organization. In particular, the code is in the *src* folder.
+This repository contains a few macros that can help debugging Arduino sketches. The repo was written with Visual Studio Code, so its structure follows the VSC organization. In particular, the code is in the *src* folder. A short post describing the macros is available: https://folk.uio.no/jeanra/Microelectronics/DebugMacros.html
 
 ## Macros
 
